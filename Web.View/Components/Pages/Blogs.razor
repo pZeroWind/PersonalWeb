@@ -1,0 +1,74 @@
+﻿@page "/blogs/{title?}"
+@inject SnowflakeIdGenerator snow
+@inject BlogPresenter presenter;
+@inject NavigationManager navigation;
+
+<PageTitle>ZeroWind的个人网站-博客</PageTitle>
+
+<div class="page">
+    @if (presenter != null)
+    {
+        <div class="search">
+            <input @bind-value="_searchTitle" class="search-input" type="text" />
+            <button class="search-btn" @onclick="OnSearch">站内搜索</button>
+        </div>
+        <div class="blog-list">
+            <div class="blog-list-content">
+                @foreach (var blog in presenter.GetBlogs(Title))
+                {
+                    <BlogComponent BlogData="blog"></BlogComponent>
+                }
+            </div>
+            <div class="blog-list-pager">
+                <button class="@(_pageIndex > 1 ? "blog-list-pager-btn" : "blog-list-pager-btn-disable")" @onclick="PrevBlogPage">
+                    上一页
+                </button>
+                <span>第@(_pageIndex)页-共@(presenter.LastPageIndex())页</span>
+                <button class="@(_pageIndex < presenter.LastPageIndex() ? "blog-list-pager-btn" : "blog-list-pager-btn-disable")" @onclick="NextBlogPage">
+                    下一页
+                </button>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string? Title { get; set; } = null;
+
+    private string _searchTitle = string.Empty;
+
+    private void OnSearch()
+    {
+        navigation.NavigateTo($"/blogs/{_searchTitle}");
+    }
+
+    private int _pageIndex;
+
+    private int _pageSize;
+
+    private void PrevBlogPage()
+    {
+        if (presenter != null)
+        {
+            _pageIndex = presenter.PrevPageIndex();
+        }
+    }
+
+    private void NextBlogPage()
+    {
+        if (presenter != null)
+        {
+            _pageIndex = presenter.NextPageIndex();
+        }
+    }
+
+    protected override Task OnInitializedAsync()
+    {
+        presenter.SetPageSize(5);
+        _searchTitle = Title ?? string.Empty;
+        _pageIndex = presenter.GetCurrentPageIndex();
+        _pageSize = presenter.GetPageSize();
+        return Task.CompletedTask;
+    }
+}
