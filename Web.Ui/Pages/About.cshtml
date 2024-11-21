@@ -1,6 +1,10 @@
 ﻿@page
 @model Web.Ui.Pages.AboutModel
 @{
+    ViewData["Title"] = "关于我";
+    ViewData["Route"] = "about";
+
+
     List<Shared._LabelModel> DataList = [
         new() { LabelName = "网名", Content = "ZeroWind" },
         new() { LabelName="生日", Content ="2002.02.04" },

@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddSingleton<SnowflakeIdGenerator>();
 
 var conn = $"Data Source= {Path.Combine(AppContext.BaseDirectory, builder.Configuration.GetConnectionString("FileName") ?? string.Empty)}";
-Console.WriteLine(conn);
+
 builder.Services.AddTransient(op => new ConnectionConfig
 {
     ConnectionString = conn,

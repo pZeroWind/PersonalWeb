@@ -42,7 +42,8 @@
             .then(response => response.text())
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;
-                    history.pushState(null, '', `?page=${model.pageIndex}&search=${(model.search ? '' :  model.search)}`);
+                    if (!model.search) model.search = "";
+                    history.pushState(null, '', `?page=${model.pageIndex}&search=${model.search}`);
             });
         }
 
@@ -52,7 +53,8 @@
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;
                     model.pageIndex--;
-                    history.pushState(null, '', `?page=${model.pageIndex}&search=${(model.search ? '' : model.search)}`);
+                    if (!model.search) model.search = "";
+                    history.pushState(null, '', `?page=${model.pageIndex}&search=${model.search}`);
             });
         }
 
@@ -62,7 +64,8 @@
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;
                     model.pageIndex++;
-                    history.pushState(null, '', `?page=${model.pageIndex}&search=${(model.search ? '' : model.search)}`);
+                    if (!model.search) model.search = "";
+                    history.pushState(null, '', `?page=${model.pageIndex}&search=${model.search}`);
             });
         }
     </script>

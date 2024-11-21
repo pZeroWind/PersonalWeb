@@ -10,8 +10,8 @@
 
 <div class="homepage">
     <div class="title">@Html.Raw(IndexTitle)</div>
-    <div class="search">
-        <input class="search-input" type="text" />
-        <button class="search-btn" >站内搜索</button>
-    </div>
+    <form class="search" action="/blogs" method="get">
+        <input class="search-input" name="search" type="text" />
+        <button type="submit" class="search-btn">站内搜索</button>
+    </form>
 </div>
