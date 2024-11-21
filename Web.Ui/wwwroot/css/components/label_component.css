@@ -1,0 +1,17 @@
+﻿.label-component {
+    padding: 10px;
+    display: flex;
+    flex-wrap:nowrap;
+    align-items:center;
+}
+
+.label-component-name{
+    font-size: 20px;
+    width: 100px;
+    font-weight:bold;
+    user-select:none;
+}
+
+.label-component-cotent {
+    font-size: 20px;
+}

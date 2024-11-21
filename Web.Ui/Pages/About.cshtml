@@ -1,0 +1,26 @@
+﻿@page
+@model Web.Ui.Pages.AboutModel
+@{
+    List<Shared._LabelModel> DataList = [
+        new() { LabelName = "网名", Content = "ZeroWind" },
+        new() { LabelName="生日", Content ="2002.02.04" },
+        new() { LabelName="行业", Content ="软件、游戏开发" },
+        new() { LabelName="联系邮箱", Content ="p_zero_wind@163.com" },
+    ];
+
+    Shared._LabelModel Desc = new() { LabelName = "擅长技能" };
+}
+
+<div class="page">
+    <div class="card" style="margin-top:20px;">
+        <div class="card-top">
+            <div>
+                @foreach(var data in DataList)
+                {
+                    @await Html.PartialAsync("_Label", data)
+                }
+            </div>
+        </div>
+        @await Html.PartialAsync("_Label", Desc)
+    </div>
+</div>

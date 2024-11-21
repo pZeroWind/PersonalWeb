@@ -1,0 +1,119 @@
+﻿.blog-list {
+    width: 100%;
+    background: #202020;
+    border-radius: 10px;
+    padding: 15px 20px;
+    min-height: 525px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.blog-list-content{
+    flex: 1;
+}
+
+.blog-list-pager {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    background: linear-gradient(135deg, #202020, #303030);
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    min-height: 30px;
+    min-width: 100px;
+}
+
+.blog-list-pager span{
+    display: inline-block;
+    margin: 10px;
+}
+
+.blog-list-pager-btn {
+    cursor: pointer;
+    background: #252525;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    min-width: 25px;
+    min-height: 25px;
+    padding: 10px;
+    margin: 0 2.5px;
+    color: #d3d3d3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.blog-list-pager-btn-disable {
+    background: #303030;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    min-width: 25px;
+    min-height: 25px;
+    padding: 10px;
+    margin: 0 2.5px;
+    color: #AAA;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.blog-list-pager-btn:hover{
+    border: 2px solid #A00;
+}
+
+.blog-info {
+    width: 100%;
+    background: #202020;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin: 20px 0;
+    min-height: 525px;
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-info-content {
+    overflow-x: auto;
+}
+
+.blog-info-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px dashed #252525;
+    margin-bottom: 10px;
+}
+
+.blog-info-header-title{
+    margin-bottom: 20px;
+}
+
+.blog-info-header-title-content {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.blog-info-toback {
+    cursor: pointer;
+    background: #252525;
+    border-radius: 10px;
+    font-weight: bold;
+    border: 2px solid transparent;
+    min-width: 75px;
+    padding: 0px 10px;
+    margin: 5px 2.5px 10px 2.5px;
+    height: 40px;
+    color: #d3d3d3;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.blog-info-toback:hover {
+    border: 2px solid #A00;
+}
+
+.blog-info-header-date {
+    font-size: 12px;
+}

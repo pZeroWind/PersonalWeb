@@ -1,0 +1,35 @@
+﻿.blog-card {
+    display: block;
+    color: #d3d3d3;
+    text-decoration: none;
+    width: 100%;
+    user-select: none;
+    background: linear-gradient(135deg, #202020, #303030);
+    padding: 10px;
+    margin: 10px 0px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.15s ease;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+}
+
+.blog-card:hover{
+    cursor: pointer;
+    transform: scale(1.025);
+    border: 2px solid #800;
+    color: #FFF;
+}
+
+.blog-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 12.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.blog-card-date{
+    font-size: 12px;
+    text-align: right;
+}

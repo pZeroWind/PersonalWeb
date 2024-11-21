@@ -1,0 +1,30 @@
+﻿@model Web.Ui.ViewModel.BlogsVModel
+
+<div class="blog-list-content">
+    @foreach (var blog in Model.BlogList)
+    {
+        <a class="blog-card" href="/blogInfo/@blog.Id">
+            <div class="blog-card-title">
+                @blog.Title
+            </div>
+            <div class="blog-card-date">
+                <div class="blog-card-date-item">
+                    发布时间：@blog.CreateDate
+                </div>
+            </div>
+        </a>
+    }
+</div>
+<div class="blog-list-pager">
+    <button @(Model.PageIndex > 1 ? string.Empty : "disabled")
+        onclick="prevPage()" 
+        class="@(Model.PageIndex > 1 ? "blog-list-pager-btn" : "blog-list-pager-btn-disable")">
+        上一页
+    </button>
+    <span>第@(Model.PageIndex)页-共@(Model.PageCount)页</span>
+    <button @(Model.PageIndex < Model.PageCount ? string.Empty : "disabled")
+        onclick="nextPage()" 
+        class="@(Model.PageIndex < Model.PageCount ? "blog-list-pager-btn" : "blog-list-pager-btn-disable")">
+        下一页
+    </button>
+</div>

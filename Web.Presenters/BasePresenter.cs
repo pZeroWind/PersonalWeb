@@ -1,14 +1,17 @@
-﻿using Web.Models;
-
-namespace Web.Presenters
+﻿namespace Web.Presenters
 {
-    public class BasePresenter<T> where T : IModel, new() 
+    public class BasePresenter<T, S>(T model)
+        where T : class 
+        where S : class
     {
-        protected T Model { get; private set; }
+        protected T Model => model;
 
-        public BasePresenter() 
+        protected S? View {  get; private set; }
+
+        public TR SetView<TR>(S view) where TR : BasePresenter<T, S>
         {
-            Model = new T();
+            View = view;
+            return (TR)this;
         }
     }
 }

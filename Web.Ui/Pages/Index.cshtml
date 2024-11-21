@@ -1,0 +1,17 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "主页"; 
+    ViewData["Route"] = "index";
+
+    string IndexTitle = "欢迎来到零风的个人网站";
+    IndexTitle = string.Concat(IndexTitle.Select(ch => $"<span>{ch}</span>"));
+}
+
+<div class="homepage">
+    <div class="title">@Html.Raw(IndexTitle)</div>
+    <div class="search">
+        <input class="search-input" type="text" />
+        <button class="search-btn" >站内搜索</button>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿@page "/blogInfo/{id}"
+@model Web.Ui.Pages.BlogInfoModel
+@{
+    var Data = Model.VModel.Data;
+}
+<div class="page">
+    <div class="blog-info">
+        @if (Data != null)
+        {
+            <div class="blog-info-header">
+                <div class="blog-info-header-title">
+                    <div class="blog-info-header-title-content">@Data.Title</div>
+                    <div class="blog-info-header-date">发布时间：@Data.CreateDate</div>
+                </div>
+                <button class="blog-info-toback" onclick="window.history.back()">
+                    返回
+                </button>
+            </div>
+            <div class="blog-info-content">
+                @if (Data.Content != null)
+                {
+                    @Html.Raw(Data.Content)
+                }
+            </div>
+        }
+    </div>
+</div>

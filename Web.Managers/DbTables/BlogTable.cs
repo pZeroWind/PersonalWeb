@@ -9,6 +9,9 @@ namespace Web.Managers.DbTables
         public long Id { get; set; }
 
         [SugarColumn(IsNullable = false)]
+        public string Name { get; set; } = string.Empty;
+
+        [SugarColumn(IsNullable = false)]
         public string FileName { get; set; } = string.Empty;
 
         [SugarColumn(IsNullable = false)]
