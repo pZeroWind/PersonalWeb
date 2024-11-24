@@ -1,0 +1,53 @@
+﻿@page "/admin/projects"
+@model Web.Ui.Pages.AdminProjectsModel
+@{
+    ViewData["Title"] = "项目列表管理";
+    ViewData["Route"] = "admin/projects";
+}
+@section CSS {
+    <link rel="stylesheet" href="~/css/adminpage.css" />
+    <link rel="stylesheet" href="~/css/components/project_component.css" />
+}
+<div class="page admin-page">
+    <div class="admin-content-list">
+        @foreach(var project in Model.Projects)
+        {
+            <form class="project-content" method="post" action="/admin/projects?handler=Delete&id=@project.Id">
+                @Html.AntiForgeryToken()
+                <div style="display:flex;justify-content:space-between; align-items:center;">
+                    <div class="project-content-name">@project.Name</div>
+                    <div class="project-content-type">@project.Type</div>
+                </div>
+                <a class="project-content-url" href="@project.Url">@project.Url</a>
+                <button class="page-btn" style="font-size:12px;margin-top:10px;" type="submit">删除</button>
+            </form>
+        }
+    </div>
+    <form class="card" method="post" enctype="multipart/form-data">
+        <h1>添加项目</h1>
+        <div style="flex: 1;">
+            @Html.AntiForgeryToken()
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="admin-input" style="color: #F00; font-size: 12px;margin-top: 0;margin-bottom:0;">
+                    @Model.Error
+                </div>
+            }
+            <div class="admin-input">
+                <label>名称</label>
+                <input name="name" type="text" />
+            </div>
+            <div class="admin-input">
+                <label>类型</label>
+                <input name="type" type="text" />
+            </div>
+            <div class="admin-input">
+                <label>链接</label>
+                <input name="url" type="text" />
+            </div>
+        </div>
+        <div class="admin-input page-btn-group-bttom">
+            <button class="page-btn" type="submit">添加项目</button>
+        </div>
+    </form>
+</div>

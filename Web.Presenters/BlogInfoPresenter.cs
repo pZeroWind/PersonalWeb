@@ -11,11 +11,14 @@ namespace Web.Presenters
         public async Task GetBlogAsync(string id)
         {
             if (View == null) return;
-            var blog = await Model.Get(id.ToID());
+            var blog = await Model.GetAsync(id.ToID());
 
             if (blog.Content != null)
             {
-                var htmlContent = Markdown.ToHtml(blog.Content);
+                var pipeline = new MarkdownPipelineBuilder()
+                                    .UseAdvancedExtensions() // 启用高级扩展
+                                    .Build();
+                var htmlContent = Markdown.ToHtml(blog.Content, pipeline);
 
                 string pattern = @"<img\b[^<>]*?\bsrc[\s\t\r\n]*=[\s\t\r\n]*[""']?[\s\t\r\n]*(?<imgUrl>[^\s\t\r\n""'<>]*)[^<>]*?/?[\s\t\r\n]*>";
                 // 替换 src 属性的值

@@ -4,16 +4,16 @@
             <a class="top-nav-left-link">菜单</a>
         </li>
         <li class="top-nav-left-item phone-hidden">
-            <a class="@((ViewData["Route"] as string) == "index" ? "top-nav-left-link-active" : "top-nav-left-link" )"
-               href="/">主页</a>
+            <a class="@((ViewData["Route"] as string) == "admin/blogs" ? "top-nav-left-link-active" : "top-nav-left-link" )"
+               href="/admin/blogs">博客管理</a>
         </li>
         <li class="top-nav-left-item phone-hidden">
-            <a class="@((ViewData["Route"] as string) == "blogs" ? "top-nav-left-link-active" : "top-nav-left-link" )"
-               href="/blogs">博客</a>
+            <a class="@((ViewData["Route"] as string) == "admin/projects" ? "top-nav-left-link-active" : "top-nav-left-link" )"
+               href="/admin/projects">项目列表管理</a>
         </li>
         <li class="top-nav-left-item phone-hidden">
-            <a class="@((ViewData["Route"] as string) == "about" ? "top-nav-left-link-active" : "top-nav-left-link" )"
-               href="/about">关于</a>
+            <a class="@((ViewData["Route"] as string) == "admin/user" ? "top-nav-left-link-active" : "top-nav-left-link" )"
+               href="/admin/user">个人资料管理</a>
         </li>
     </ul>
 

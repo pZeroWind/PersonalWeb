@@ -4,12 +4,19 @@
     ViewData["Title"] = "博客列表";
     ViewData["Route"] = "blogs";
 }
-<div class="page">
-        <div class="search">
-            @Html.AntiForgeryToken()
+
+@section CSS{
+    <link rel="stylesheet" href="~/css/blogpage.css" />
+    <link rel="stylesheet" href="~/css/components/search.css" />
+    <link rel="stylesheet" href="~/css/components/blog_component.css" />
+}
+
+<div class="page blog-page">
+    @Html.AntiForgeryToken()
+        <form class="search" action="/blogs" method="get" style="width: auto;">
             <input value="@Model.ViewModel.Search" class="search-input" type="text" onchange="changeSearchTitle(value)" />
-            <button class="search-btn" onclick="reloadPage()">站内搜索</button>
-        </div>
+            <button type="submit" class="search-btn" onclick="reloadPage();return false;">站内搜索</button>
+        </form>
     <div class="blog-list" id="blogs-blog-list">
         @await Html.PartialAsync("_BlogsView", Model.ViewModel)
     </div>
@@ -25,20 +32,9 @@
             tempSearch = val;
         }
 
-        function postData() {
-            return {
-                method: "POST",
-                headers: {
-                    'RequestVerificationToken': document.querySelector('input[type="hidden"][name="__RequestVerificationToken"]').value,
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(model)
-            }
-        }
-
         function reloadPage() {
             model.search = tempSearch;
-            fetch('@Url.Page("Blogs", "Reload")', postData())
+            fetch('@Url.Page("Blogs", "Reload")', GetPostData(JSON.stringify(model)))
             .then(response => response.text())
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;
@@ -48,7 +44,7 @@
         }
 
         function prevPage(){
-            fetch('@Url.Page("Blogs", "PrevPageIndex")', postData())
+            fetch('@Url.Page("Blogs", "PrevPageIndex")', GetPostData(JSON.stringify(model)))
             .then(response => response.text())
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;
@@ -59,7 +55,7 @@
         }
 
         function nextPage(){
-            fetch('@Url.Page("Blogs", "NextPageIndex")', postData())
+            fetch('@Url.Page("Blogs", "NextPageIndex")', GetPostData(JSON.stringify(model)))
             .then(response => response.text())
             .then(html => {
                     document.getElementById("blogs-blog-list").innerHTML = html;

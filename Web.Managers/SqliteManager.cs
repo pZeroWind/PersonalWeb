@@ -18,7 +18,9 @@ namespace Web.Managers
                 .SetStringDefaultLength(255)
                 .InitTables(
                     typeof(BlogTable),
-                    typeof(ProjectTable)
+                    typeof(ProjectTable),
+                    typeof(SkillTable),
+                    typeof(AdminTable)
                 );
         }
     }

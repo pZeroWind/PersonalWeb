@@ -19,13 +19,13 @@ namespace Web.Ui.Pages
             ViewModel.PageIndex = page;
             ViewModel.PageSize = 5;
             await _presenter.SetView<BlogPresenter>(ViewModel)
-                .GetBlogs();
+                .GetBlogsAsync();
         }
 
         public async Task<IActionResult> OnPostNextPageIndexAsync([FromBody] BlogsVModel model)
         {
             await _presenter.SetView<BlogPresenter>(model)
-                .NextPageIndex();
+                .NextPageIndexAsync();
             ViewModel = model;
             return Partial("_BlogsView", model);
         }
@@ -33,7 +33,7 @@ namespace Web.Ui.Pages
         public async Task<IActionResult> OnPostReloadAsync([FromBody] BlogsVModel model)
         {
             await _presenter.SetView<BlogPresenter>(model)
-                .GetBlogs();
+                .GetBlogsAsync();
             ViewModel = model;
             return Partial("_BlogsView", model);
         }
@@ -41,7 +41,7 @@ namespace Web.Ui.Pages
         public async Task<IActionResult> OnPostPrevPageIndexAsync([FromBody] BlogsVModel model)
         {
             await _presenter.SetView<BlogPresenter>(model)
-                .PrevPageIndex();
+                .PrevPageIndexAysnc();
             ViewModel = model;
             return Partial("_BlogsView", model);
         }

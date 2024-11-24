@@ -25,6 +25,16 @@
     width: 1.25em;
 }
 
+@media screen and (max-width: 768px) {
+    .homepage {
+        padding: 0 10%;
+    }
+
+    .homepage .title {
+        font-size: 16px;
+    }
+}
+
 @keyframes content-slide-in {
     from {
         width: 0;

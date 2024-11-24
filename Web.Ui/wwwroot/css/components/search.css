@@ -1,8 +1,8 @@
 ﻿.search {
     display: flex;
+    width: 100%;
     border: 3px solid #A00;
     height: 40px;
-    width: 100%;
     border-radius: 20px;
     margin: 10px;
     overflow: hidden;
@@ -32,6 +32,18 @@
     color: white;
 }
 
-    .search-btn:hover {
-        background-color: #800;
+.search-btn:hover {
+     background-color: #800;
+}
+
+@media screen and (max-width: 768px) {
+    .search {
+        height: 35px;
     }
+    .search-input{
+        font-size: 14px;
+    }
+    .search-btn {
+        font-size: 14px;
+    }
+}

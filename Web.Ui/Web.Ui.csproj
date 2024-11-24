@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="0.38.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Web.Managers\Web.Managers.csproj" />
     <ProjectReference Include="..\Web.Models\Web.Models.csproj" />
     <ProjectReference Include="..\Web.Presenters\Web.Presenters.csproj" />
@@ -26,8 +30,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Update="wwwroot\web.db">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\blogs\" />
   </ItemGroup>
 
 </Project>

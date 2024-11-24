@@ -1,4 +1,4 @@
-﻿.blog-card {
+﻿.project-content {
     display: block;
     color: #d3d3d3;
     text-decoration: none;
@@ -14,22 +14,26 @@
     box-sizing: border-box;
 }
 
-.blog-card:hover{
-    cursor: pointer;
-    transform: scale(1.015);
-    border: 2px solid #800;
-    color: #FFF;
-}
-
-.blog-card-title {
-    font-size: 18px;
+.project-content-name {
+    font-size: 20px;
     font-weight: bold;
-    padding-bottom: 12.5px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    word-break: break-word;
+    white-space: pre-wrap;
 }
 
-.blog-card-date{
+.project-content-type {
     font-size: 12px;
-    text-align: right;
+    font-weight: bold;
+    background: #800;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.project-content-url {
+    color: #A00;
+    font-size: 12px;
+    margin-top: 10px;
+    text-decoration:underline;
+    word-break: break-word;
+    white-space:pre-wrap;
 }

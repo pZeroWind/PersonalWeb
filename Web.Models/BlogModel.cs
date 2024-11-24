@@ -4,7 +4,7 @@ using Web.Managers.DbTables;
 
 namespace Web.Managers
 {
-    public class BlogModel(SqliteManager sqlite) : AsyncBaseModel<BlogTable>(sqlite)
+    public class BlogModel(SqliteManager sqlite, SnowflakeIdGenerator snowflake) : AsyncBaseModel<BlogTable>(sqlite)
     {
 
         /// <summary>
@@ -39,14 +39,41 @@ namespace Web.Managers
 
         public async Task<int> GetTotalAsync() => await GetCountAsync();
 
-        public async Task<Blog> Get(long id)
+        public async Task<Blog> GetAsync(long id)
         {
             return new Blog(await FindAsync(blog => blog.Id == id));
         }
 
+        public async Task<int> AddAsync(Blog blog)
+        {
+            if (string.IsNullOrEmpty(blog.FileName)) return 0;
+            BlogTable item = new BlogTable()
+            {
+                Id = snowflake.GenerateId(),
+                Name = blog.Title ?? Guid.NewGuid().ToString("N"),
+                FileName = blog.FileName
+            };
+            return await InsertAsync(item);
+        }
+
+        public async Task<int> UpdateAsync(Blog blog)
+        {
+            if (string.IsNullOrEmpty(blog.FileName)) return 0;
+            BlogTable item = new BlogTable()
+            {
+                Id = blog.Id.ToID(),
+                Name = blog.Title ?? Guid.NewGuid().ToString("N"),
+                FileName = blog.FileName
+            };
+            return await UpdateAsync(item);
+        }
+
         protected override async Task<List<BlogTable>> GetListAsync(Expression<Func<BlogTable, bool>> where)
         {
-            return await Sqlite.Client.Queryable<BlogTable>().Where(where).ToPageListAsync(_pageIndex, _pageSize);
+            return await Sqlite.Client.Queryable<BlogTable>()
+                .Where(where)
+                .OrderByDescending(blog => blog.CreateTime)
+                .ToPageListAsync(_pageIndex, _pageSize);
         }
 
         protected override async Task<int> GetCountAsync()

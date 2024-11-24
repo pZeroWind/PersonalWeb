@@ -1,0 +1,56 @@
+﻿@page "/admin/user"
+@model Web.Ui.Pages.AdminUserModel
+@{
+    ViewData["Title"] = "个人资料管理";
+    ViewData["Route"] = "admin/user";
+}
+@section CSS {
+    <link rel="stylesheet" href="~/css/adminpage.css" />
+}
+<div class="page admin-page">
+    <form class="card admin-content-list" method="post" enctype="multipart/form-data">
+        <h1>个人资料</h1>
+        <div style="flex: 1;">
+            @Html.AntiForgeryToken()
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="admin-input" style="color: #F00; font-size: 12px;margin-top: 0;margin-bottom:0;">
+                    @Model.Error
+                </div>
+            }
+            <div class="admin-input">
+                <label>站主名称</label>
+                <input name="nickname" type="text" value="@Model.Admin.Nickname" />
+            </div>
+            <div class="admin-input">
+                <label>生日</label>
+                <input name="birthday" type="date" value="@DateTimeOffset.FromUnixTimeMilliseconds(Model.Admin.Birthday ?? 0).LocalDateTime.ToString("yyyy-MM-dd")" />
+            </div>
+            <div class="admin-input">
+                <label>行业</label>
+                <input name="work" type="text" value="@Model.Admin.Work" />
+            </div>
+            <div class="admin-input">
+                <label>邮箱</label>
+                <input name="email" type="text" value="@Model.Admin.Email" />
+            </div>
+            <div class="admin-input">
+                <label>专业技能</label>
+                <input name="skill" type="text" value="@Model.SKill" />
+            </div>
+            <h3 style="padding:10px;border-top: 2.5px dashed #303030;margin-top:10px;padding-top:20px;">修改密码：</h3>
+            <input type="hidden" name="password" value="@Model.Admin.Password" />
+            <div class="admin-input">
+                <label>新密码</label>
+                <input name="newPassword" type="password" />
+            </div>
+            <div class="admin-input">
+                <label>确认密码</label>
+                <input name="reqPassword" type="password" />
+            </div>
+        </div>
+        <div class="admin-input page-btn-group-bttom">
+            <button class="page-btn" type="submit">确认保存</button>
+        </div>
+    </form>
+</div>

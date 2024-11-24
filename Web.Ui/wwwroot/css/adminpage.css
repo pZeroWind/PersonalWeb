@@ -1,0 +1,104 @@
+﻿.admin-page{
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.admin-input {
+    display: flex;
+    padding: 10px;
+}
+
+.admin-input label{
+    font-weight: bold;
+    width: 75px;
+    height: 36px;
+    line-height: 36px;
+}
+
+.admin-input input ,.admin-input .input{
+    color: white;
+    background-color: #101010;
+    border:none;
+    outline:none;
+    border-radius:20px;
+    padding: 0px 15px;
+    flex: 1;
+    min-height: 36px;
+}
+
+.admin-input .input{
+    background-color: transparent;
+}
+
+.file-upload {
+    position:relative;
+}
+.file-upload input{
+    position: absolute;
+    visibility:hidden;
+    width: 0px;
+}
+.file-upload button{
+    position: absolute;
+    left: 20px;
+}
+.admin-card{
+    width: 350px;
+    min-height: 100px;
+    margin-top: 20px;
+}
+
+.file-upload .page-btn {
+    padding: 0px;
+}
+
+.admin-content-list {
+    margin: 0 10px;
+    width: 550px;
+    background: #202020;
+    border-radius: 10px;
+    padding: 10px 20px;
+    min-height: 525px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-input .file-upload {
+    padding: 0;
+}
+
+.page-btn-group-bttom {
+    justify-content: flex-end;
+}
+
+.page-btn-group-bttom .page-btn{
+    margin-left: 20px;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .admin-page {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admin-content-list{
+        width:100%;
+        margin-bottom: 10px;
+    }
+
+    .admin-card {
+        width: auto;
+        min-height: 100px;
+        margin-top: 20px;
+    }
+
+    .page-btn-group-bttom{
+        justify-content: space-between;
+    }
+
+    .page-btn-group-bttom .page-btn{
+        margin-left: 0;
+    }
+}

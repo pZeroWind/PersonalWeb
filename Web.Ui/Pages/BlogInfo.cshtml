@@ -2,8 +2,16 @@
 @model Web.Ui.Pages.BlogInfoModel
 @{
     var Data = Model.VModel.Data;
+    ViewData["Title"] = Data?.Title ?? "博客详情";
+    ViewData["Route"] = "blogs";
 }
-<div class="page">
+
+@section CSS {
+    <link rel="stylesheet" href="~/css/blogpage.css" />
+    <link rel="stylesheet" href="~/css/prism.css" />
+}
+
+<div class="page blog-page">
     <div class="blog-info">
         @if (Data != null)
         {
@@ -12,7 +20,7 @@
                     <div class="blog-info-header-title-content">@Data.Title</div>
                     <div class="blog-info-header-date">发布时间：@Data.CreateDate</div>
                 </div>
-                <button class="blog-info-toback" onclick="window.history.back()">
+                <button class="page-btn blog-toback" onclick="window.history.back()">
                     返回
                 </button>
             </div>
@@ -25,3 +33,7 @@
         }
     </div>
 </div>
+
+@section Scripts{
+    <script src="~/js/prism.js"></script>
+}

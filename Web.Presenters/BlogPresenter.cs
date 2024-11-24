@@ -10,7 +10,7 @@ namespace Web.Presenters
         /// <summary>
         /// 博客列表
         /// </summary>
-        public async Task GetBlogs()
+        public async Task GetBlogsAsync()
         {
             if (View == null) return;
             View.BlogList = await Model.GetBlogsAsync(View.Search ?? string.Empty, View.PageIndex, View.PageSize);
@@ -23,7 +23,7 @@ namespace Web.Presenters
         /// <summary>
         /// 下一页索引
         /// </summary>
-        public async Task NextPageIndex()
+        public async Task NextPageIndexAsync()
         {
             if (View == null) return;
             if (View.TotalCount <= View.PageIndex * View.PageSize)
@@ -31,10 +31,10 @@ namespace Web.Presenters
                 return;
             }
             View.PageIndex++;
-            await GetBlogs();
+            await GetBlogsAsync();
         }
 
-        public async Task ToPageIndex(int page)
+        public async Task ToPageIndexAysnc(int page)
         {
             if (View == null) return;
             int last = await Model.GetLastPageIndexAsync();
@@ -50,14 +50,14 @@ namespace Web.Presenters
             {
                 View.PageIndex = 1;
             }
-            await GetBlogs();
+            await GetBlogsAsync();
         }
 
         /// <summary>
         /// 上一页索引
         /// </summary>
         /// <returns></returns>
-        public async Task PrevPageIndex()
+        public async Task PrevPageIndexAysnc()
         {
             if (View == null) return;
             if (View.PageIndex == 1)
@@ -65,7 +65,17 @@ namespace Web.Presenters
                 return;
             }
             View.PageIndex--;
-            await GetBlogs();
+            await GetBlogsAsync();
+        }
+
+        public async Task AddBlogAsync(Blog blog)
+        {
+            await Model.AddAsync(blog);
+        }
+
+        public async Task UpdateBlogAsync(Blog blog)
+        {
+            await Model.UpdateAsync(blog);
         }
     }
 }

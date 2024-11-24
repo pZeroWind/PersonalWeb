@@ -3,7 +3,7 @@
 <div class="blog-list-content">
     @foreach (var blog in Model.BlogList)
     {
-        <a class="blog-card" href="/blogInfo/@blog.Id">
+        <a class="blog-card" href="/admin/blogs?id=@blog.Id">
             <div class="blog-card-title">
                 @blog.Title
             </div>

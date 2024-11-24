@@ -1,30 +1,49 @@
 ﻿@page
 @model Web.Ui.Pages.AboutModel
 @{
-    ViewData["Title"] = "关于我";
+    ViewData["Title"] = "关于";
     ViewData["Route"] = "about";
 
 
     List<Shared._LabelModel> DataList = [
-        new() { LabelName = "网名", Content = "ZeroWind" },
-        new() { LabelName="生日", Content ="2002.02.04" },
-        new() { LabelName="行业", Content ="软件、游戏开发" },
-        new() { LabelName="联系邮箱", Content ="p_zero_wind@163.com" },
+        new() { LabelName = "站主", Content = Model.VModel.Nickname  },
+        new() { LabelName = "生日", Content = Model.VModel.Birthday  },
+        new() { LabelName = "行业", Content = Model.VModel.Work  },
+        new() { LabelName = "联系邮箱", Content =Model.VModel.Email  },
     ];
-
-    Shared._LabelModel Desc = new() { LabelName = "擅长技能" };
 }
 
-<div class="page">
-    <div class="card" style="margin-top:20px;">
-        <div class="card-top">
-            <div>
-                @foreach(var data in DataList)
-                {
-                    @await Html.PartialAsync("_Label", data)
-                }
-            </div>
+@section CSS{
+    <link rel="stylesheet" href="~/css/aboutpage.css" />
+    <link rel="stylesheet" href="~/css/components/label_component.css" />
+    <link rel="stylesheet" href="~/css/components/project_component.css" />
+}
+
+<div class="page about-page">
+    <div class="card about-page-left">
+        <h1>资料</h1>
+        @foreach (var data in DataList)
+        {
+            @await Html.PartialAsync("_Label", data)
+        }
+        <div class="skills-container">
+            @foreach(var skill in Model.VModel.SkillList)
+            {
+                <div class="skill" data-level="@skill.Level">@skill.Name</div>
+            }
         </div>
-        @await Html.PartialAsync("_Label", Desc)
+    </div>
+    <div class="card about-page-right">
+        <h1>项目</h1>
+        @foreach (var project in Model.VModel.ProjectExperience)
+        {
+            <div class="project-content">
+                <div style="display:flex;justify-content:space-between; align-items:center;">
+                    <div class="project-content-name">@project.Name</div>
+                    <div class="project-content-type">@project.Type</div>
+                </div>
+                <a class="project-content-url" target="_blank" href="@project.Url">@project.Url</a>
+            </div>
+        }
     </div>
 </div>

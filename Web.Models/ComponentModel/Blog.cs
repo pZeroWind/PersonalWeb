@@ -1,5 +1,4 @@
-﻿using Web.Managers;
-using Web.Managers.DbTables;
+﻿using Web.Managers.DbTables;
 
 namespace Web.Managers.ComponentModel
 {
@@ -11,11 +10,11 @@ namespace Web.Managers.ComponentModel
             if (table.FileName != null)
             {
                 FileName = table.FileName;
-                Title = Path.GetFileNameWithoutExtension(FileName);
+                Title = table.Name;
                 using StreamReader sr = new($"wwwroot/{table.FileName}/content.md");
                 Content = sr.ReadToEnd();
             }
-            CreateDate = DateTimeOffset.FromUnixTimeMilliseconds(table.CreateTime).LocalDateTime.ToString("f");
+            CreateDate = DateTimeOffset.FromUnixTimeMilliseconds(table.CreateTime).LocalDateTime.ToDateString();
         }
 
         public Blog()

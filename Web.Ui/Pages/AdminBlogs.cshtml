@@ -1,0 +1,77 @@
+﻿@page "/admin/blogs"
+@model Web.Ui.Pages.AdminBlogsModel
+@{
+    ViewData["Title"] = "博客管理";
+    ViewData["Route"] = "admin/blogs";
+}
+@section CSS {
+    <link rel="stylesheet" href="~/css/adminpage.css" />
+    <link rel="stylesheet" href="~/css/blogpage.css" />
+    <link rel="stylesheet" href="~/css/components/blog_component.css" />
+}
+<div class="page admin-page">
+    <div class="admin-content-list">
+        @await Html.PartialAsync("_BlogsViewAdmin", Model.VModel)
+    </div>
+    <form class="card" method="post" enctype="multipart/form-data">
+        <h1>上传博客</h1>
+        <div style="flex: 1;">
+            <input name="id" value="@Model.BlogId" type="hidden" />
+            @Html.AntiForgeryToken()
+            @if (!string.IsNullOrEmpty(Model.Error))
+            {
+                <div class="admin-input" style="color: #F00; font-size: 12px;margin-top: 0;margin-bottom:0;">
+                    @Model.Error
+                </div>
+            }
+            <div class="admin-input">
+                <label>标题</label>
+                <input name="title" type="text" value="@Model.Info.Data?.Title" />
+            </div>
+            <div class="admin-input">
+                <label>图片</label>
+                <div class="file-upload input">
+                    <input id="blog-image-upload" name="images" type="file" multiple />
+                    <div class="page-btn" style="font-size:14px;height:36px;" onclick="onUpload('blog-image-upload')">缓存图片</div>
+                    <div id="blog-image-upload-list">
+                    </div>
+                </div>
+            </div>
+            <div class="admin-input">
+                <label>正文</label>
+                <div class="file-upload input">
+                    <input id="blog-doc-upload" name="doc" type="file" />
+                    <div class="page-btn" style="font-size:14px;height:36px;" onclick="onUpload('blog-doc-upload')">缓存文章</div>
+                    <div id="blog-doc-upload-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="admin-input page-btn-group-bttom">
+            <a class="page-btn" href="/admin/blogs">新建博客</a>
+            <button class="page-btn" type="submit">上传博客</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <script>
+        function onUpload(id){
+            const fileInput = document.getElementById(id);
+            const fileList = document.getElementById(id+"-list");
+            // 更新文件名
+            fileInput.onchange = () => {
+                if (fileInput.files.length > 0) {
+                    let html = "";
+                    for (let data of fileInput.files) {
+                        html += `<div style="margin:10px 0;">${data.name}</div>`;
+                    }
+                    fileList.innerHTML = html;
+                }
+            }
+
+            // 代理点击事件
+            fileInput.click();
+        }
+    </script>
+}

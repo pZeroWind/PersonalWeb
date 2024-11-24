@@ -2,8 +2,8 @@
 
 namespace Web.Managers.DbTables
 {
-    [SugarTable(nameof(ProjectTable))]
-    public class ProjectTable
+    [SugarTable(nameof(SkillTable))]
+    public class SkillTable
     {
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
@@ -12,9 +12,6 @@ namespace Web.Managers.DbTables
         public string? Name { get; set; }
 
         [SugarColumn(IsNullable = true)]
-        public string? Type { get; set; }
-
-        [SugarColumn(IsNullable = true)]
-        public string? Url { get; set; }
+        public string? Level { get; set; }
     }
 }

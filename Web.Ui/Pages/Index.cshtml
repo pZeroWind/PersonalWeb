@@ -8,6 +8,11 @@
     IndexTitle = string.Concat(IndexTitle.Select(ch => $"<span>{ch}</span>"));
 }
 
+@section CSS {
+    <link rel="stylesheet" href="~/css/homepage.css" />
+    <link rel="stylesheet" href="~/css/components/search.css" />
+}
+
 <div class="homepage">
     <div class="title">@Html.Raw(IndexTitle)</div>
     <form class="search" action="/blogs" method="get">

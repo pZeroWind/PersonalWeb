@@ -1,5 +1,5 @@
 ﻿.blog-list {
-    width: 100%;
+    flex: 1;
     background: #202020;
     border-radius: 10px;
     padding: 15px 20px;
@@ -30,45 +30,16 @@
 .blog-list-pager span{
     display: inline-block;
     margin: 10px;
-}
-
-.blog-list-pager-btn {
-    cursor: pointer;
-    background: #252525;
-    border-radius: 10px;
+    font-size: 14px;
     font-weight: bold;
-    border: 2px solid transparent;
-    min-width: 25px;
-    min-height: 25px;
-    padding: 10px;
-    margin: 0 2.5px;
-    color: #d3d3d3;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.blog-list-pager-btn-disable {
-    background: #303030;
-    border-radius: 10px;
-    font-weight: bold;
-    border: 2px solid transparent;
-    min-width: 25px;
-    min-height: 25px;
-    padding: 10px;
-    margin: 0 2.5px;
-    color: #AAA;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.blog-list-pager-btn:hover{
-    border: 2px solid #A00;
 }
 
 .blog-info {
-    width: 100%;
+    flex: 1;
     background: #202020;
     border-radius: 10px;
     padding: 15px 20px;
-    margin: 20px 0;
+    margin: 10px 0;
     min-height: 525px;
     display: flex;
     flex-direction: column;
@@ -76,6 +47,35 @@
 
 .blog-info-content {
     overflow-x: auto;
+    line-height: 1.5;
+}
+
+.blog-info-content img{
+    margin: 10px 0;
+}
+
+
+.blog-info-content a{
+    color: #A00;
+    text-decoration: none;
+}
+
+.blog-info-content ol,  .blog-info-content ul{
+    list-style: none;
+    padding-left: 20px; /* 外边距调整 */
+    margin-bottom: 15px;
+}
+
+/* 嵌套的有序列表 */
+.blog-info-content ol ol,.blog-info-content ol ul {
+    padding-left: 20px; /* 增加内边距，使嵌套更加明显 */
+    margin-bottom: 0px;
+}
+
+/* 嵌套更深的有序列表 */
+.blog-info-content ol ol ol,.blog-info-content ol ul ul,.blog-info-content ol ol ul {
+    padding-left: 20px;
+    margin-bottom: 0px;
 }
 
 .blog-info-header {
@@ -96,24 +96,24 @@
     margin-bottom: 5px;
 }
 
-.blog-info-toback {
-    cursor: pointer;
-    background: #252525;
-    border-radius: 10px;
-    font-weight: bold;
-    border: 2px solid transparent;
-    min-width: 75px;
-    padding: 0px 10px;
-    margin: 5px 2.5px 10px 2.5px;
-    height: 40px;
-    color: #d3d3d3;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-}
-
-.blog-info-toback:hover {
-    border: 2px solid #A00;
-}
-
 .blog-info-header-date {
     font-size: 12px;
+}
+
+.blog-toback{
+    height: 50px;
+}
+
+.blog-page {
+    padding: 0 7.5%;
+}
+
+@media screen and (max-width: 768px) {
+    .blog-page {
+        padding: 0 5%;
+    }
+
+    .page-btn {
+        font-size: 16px;
+    }
 }

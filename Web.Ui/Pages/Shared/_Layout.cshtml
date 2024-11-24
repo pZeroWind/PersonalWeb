@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ZeroWind的个人网站 - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/app.css"/>
-    <link rel="stylesheet" href="~/css/homepage.css" />
-    <link rel="stylesheet" href="~/css/blogpage.css" />
+    @RenderSection("CSS", required: false)
     <link rel="stylesheet" href="~/css/components/topnav.css" />
-    <link rel="stylesheet" href="~/css/components/search.css" />
-    <link rel="stylesheet" href="~/css/components/blog_component.css" />
-    <link rel="stylesheet" href="~/css/components/label_component.css" />
 </head>
 
 <body>
     <div id="app">
         <header>
-            @if ((ViewData["Route"] as string) != "Admin")
+            @if ((ViewData["Route"] is string route) && !route.Contains("admin"))
             {
                 @await Html.PartialAsync("_NavbarUser")
+            }
+            else
+            {
+                @await Html.PartialAsync("_NavbarAdmin")
             }
         </header>
 
