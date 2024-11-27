@@ -36,4 +36,26 @@
 
 @section Scripts{
     <script src="~/js/prism.js"></script>
+    <script>
+        window.onload = () => {
+            Prism.highlightAll();
+            const container = document.querySelector('.container'); // 获取 container 元素
+            const links = container.querySelectorAll('a'); // 查询其中的 <a> 标签
+
+            for (const link of links){
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const target = document.getElementById(new URL(this.href).hash.slice(1));
+                    const offset = 70; // 偏移量，例如导航栏高度
+                    const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+
+                    // 平滑滚动到目标位置
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                });
+            }
+        }
+    </script>
 }

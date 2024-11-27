@@ -15,7 +15,7 @@
     @Html.AntiForgeryToken()
         <form class="search" action="/blogs" method="get" style="width: auto;">
             <input value="@Model.ViewModel.Search" class="search-input" type="text" onchange="changeSearchTitle(value)" />
-            <button type="submit" class="search-btn" onclick="reloadPage();return false;">站内搜索</button>
+            <button type="submit" class="search-btn" onclick="reloadPage();return false;">搜索</button>
         </form>
     <div class="blog-list" id="blogs-blog-list">
         @await Html.PartialAsync("_BlogsView", Model.ViewModel)

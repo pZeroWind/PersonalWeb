@@ -50,8 +50,10 @@
 
 
 @media screen and (max-width: 768px){
-    .about-page{
-        flex-direction:column;
+    .about-page {
+        margin-top: 10px;
+        flex-direction: column;
+        padding: 0 7.5%;
     }
     .about-page-left {
         margin-right: 0px;

@@ -79,6 +79,7 @@
 
 @media screen and (max-width: 768px) {
     .admin-page {
+        margin-top: 10px;
         flex-direction: column;
         align-items: center;
     }

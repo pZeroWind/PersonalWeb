@@ -31,7 +31,7 @@ namespace Web.Presenters
                     if (!oldSrc.StartsWith("http"))
                     {
                         string newSrc = $"/{blog.FileName}/{oldSrc}";
-                        return match.Value.Replace(oldSrc, newSrc);  // 返回替换后的 img 标签
+                        return $"<div class=\"image-box\">{match.Value.Replace(oldSrc, newSrc)}</div>";  // 返回替换后的 img 标签
                     }
 
                     return match.Value;  // 如果是外部 URL，不做替换
